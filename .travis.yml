@@ -1,5 +1,12 @@
- language: node_js
- node_js: node
- cache:
-   directories:
-     - node_modules
+language: node_js
+node_js: node
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: heroku
+  api_key:
+    secure: LqCYXx2itc+q4OETATITpdr8HHc8Wv6HT8VQ9bsy5mA0y3CHm+Hi1YJyDxjVi14OnD611cHud9f1iu8NBD4E6/shv2mqKp9Hrnugu/yM4YvPpdCDDe5Edoa5n9TXo+Rs4O1r7jbG/WAI+pwCUDVeREZaOvsmohjoaSUpbPpQ5dDD+wJxkj37TAWxmeb62vXp5V1/DJPuKh8h7NIxdvIJlOoL9U2VlDDsN1aX2uZy6D6V887ekSEkJt4S2zkdY7ayWUc0uUzTZZOnPmFdfSwsMfs3ga+LWElIs5O8Ournix3XXLWs5wTBT0Zs9sWJ+AllRPAYOCo70jeH0eKNG7aeriZMufFyMKAdPHSCT3TSX4g9IIXAH2ILTWL2X8yh+npDtthJJnlmY807rnemmTFA+d25gHSPIF60GAbyW9fa+QBk++9sKJvabLrv4RA3KPnJP1gD7aJDG517UgCWtLRy2z2Blea465Euhjix5/dd7cGWX3Ktv5hZixMJ2SMB6c5O/6Yw7NCluFRdLenLMQmqeo+SrzMOeK4M8RX1oZ9ny9MVRYSmFyVGH3Ngd39zoDXmGhrgxN44AXjpe6HLf+KgV2EeLvUwmbz4I6sQlHU+PIrjxcppdtiR/9bt2w+SEkJ9ZUlWOlsN6S9liazgHipB1fONCj2zC2Ab90Are9uA99o=
+  app: react-mydailyjournal
+  on:
+    repo: SeanCodyDev/mydailyjournal
