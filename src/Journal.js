@@ -2,9 +2,10 @@
 import React, { Component } from 'react';
 
 //import components
-// import GratefulBox from './GratefulBox';
-// import GreatnessBox from './GreatnessBox';
 import JournalBox from './JournalBox';
+
+//import styling
+import './journal.css';
 
 
 export class Journal extends React.Component {
@@ -14,10 +15,10 @@ export class Journal extends React.Component {
 		return (
 
 			<div>
-				<h1>Journal Wrapper</h1>
-				<JournalBox type="grateful" />
-				<JournalBox type="greatness" />
-				<JournalBox type="affirmations" />
+				<h1 className="app-title">MyDailyJournal</h1>
+				<JournalBox className="journal-box" type="grateful" />
+				<JournalBox className="journal-box" type="greatness" />
+				<JournalBox className="journal-box" type="affirmations" />
 			</div>
 
 		)
