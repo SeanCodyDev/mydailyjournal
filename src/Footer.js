@@ -1,15 +1,21 @@
 //import libraries
 import React, { Component } from 'react';
 
+//import components
+//none yet
+
+//import styles
+import './footer.css';
+
 export class Footer extends React.Component {
 
 	render() {
 
 		return (
 
-			<div>
+			<footer>
 				<h1>Footer Box</h1>
-			</div>
+			</footer>
 
 		)
 	}

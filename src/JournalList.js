@@ -2,6 +2,10 @@
 import React, { Component } from 'react';
 
 //import components
+//none yet
+
+//import styles
+import './journallist.css';
 
 export class JournalList extends React.Component {
 
@@ -10,26 +14,31 @@ export class JournalList extends React.Component {
 		let list;
 
 		if (this.props.type === "affirmations") {
-			list = <div><li>Affirmations List Item</li></div>
+			list = 
+				<div>
+					<form className="journal-form">
+						<input className="journal-list-item"/>
+					</form>
+				</div>
 
 		} else {
 			list = 
 				<div>
-					<li>{this.props.type} List Item</li>
-					<li>{this.props.type} List Item</li>
-					<li>{this.props.type} List Item</li>
+					<form className="journal-form">
+						<input className="journal-list-item"/>
+						<input className="journal-list-item"/>
+						<input className="journal-list-item"/>
+					</form>
 				</div>
 
 		}
 
 		return (
 
-			<div>
-				<h1>{this.props.type} List</h1>
-				<ul>
-					{list}
-				</ul>
+			<div className="journal-">
+				{list}
 			</div>
+
 
 		)
 	}

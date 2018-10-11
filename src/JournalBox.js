@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 //import components
 import JournalList from './JournalList';
 
+//import styles
+import './journalbox.css';
+
 export class JournalBox extends React.Component {
 
 	render() {
@@ -19,9 +22,8 @@ export class JournalBox extends React.Component {
 
 		return (
 
-			<div>
-				<h1>{this.props.type} Box</h1>
-				<h2>{prompt}</h2>
+			<div className="box-wrapper">
+				<h3 className="box-prompt">{prompt}</h3>
 				<JournalList type={this.props.type}/>
 			</div>
 
