@@ -16,9 +16,13 @@ export default function LoginPage(props) {
 	// }
 
 	return (
-
-		<div className="login-card">
-			<LoginForm />
+		<div>
+			<div className="login-card">
+				<LoginForm />
+			</div>
+			<div className="login-nav">
+				<button className="signup-button">Register</button>
+			</div>
 		</div>
 
 	)

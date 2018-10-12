@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import JournalBox from './JournalBox';
 import LoginPage from './login-page';
 import SignUpPage from './signup-page';
+import Header from './header';
 
 //import styling
 import './journal.css';
@@ -14,10 +15,12 @@ export class Journal extends React.Component {
 
 	render() {
 
+//conditionally display title only on landing page screens
+//display save and logout header on main screens
 		return (
 
 			<div>
-				<h1 className="app-title">MyDailyJournal</h1>
+				<Header />
 				<JournalBox className="journal-box" type="grateful" />
 				<JournalBox className="journal-box" type="greatness" />
 				<JournalBox className="journal-box" type="affirmations" />

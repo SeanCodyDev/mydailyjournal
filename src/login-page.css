@@ -2,3 +2,9 @@
 	border: 2px black solid;
 	margin-bottom: 10px;
 }
+
+.login-nav {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

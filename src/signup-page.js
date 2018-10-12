@@ -17,8 +17,13 @@ export default function SignUpPage(props) {
 
 	return (
 
-		<div className="signup-card">
-			<SignUpForm />
+		<div>
+			<div className="signup-card">
+				<SignUpForm />
+			</div>
+			<div className="signup-nav">
+				<button className="login-button">Login</button>
+			</div>
 		</div>
 
 	)

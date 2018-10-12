@@ -1,0 +1,16 @@
+.logout-button, .save-button {
+	font-size:16px;
+	padding: 5px;
+}
+
+.app-title {
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+.header {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+
