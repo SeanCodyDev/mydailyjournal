@@ -1,5 +1,6 @@
 //import libraries
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 //import components
 //none yet
@@ -22,4 +23,4 @@ export class Footer extends React.Component {
 
 }
 
-export default Footer;
+export default connect()(Footer);

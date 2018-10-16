@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 
 //import components
 import JournalBox from './JournalBox';
-import LoginPage from './login-page';
-import SignUpPage from './signup-page';
 import Header from './header';
+import Footer from './Footer';
 
 //import styling
 import './journal.css';
@@ -24,8 +23,7 @@ export class Journal extends React.Component {
 				<JournalBox className="journal-box" type="grateful" />
 				<JournalBox className="journal-box" type="greatness" />
 				<JournalBox className="journal-box" type="affirmations" />
-				<LoginPage />
-				<SignUpPage />
+				<Footer />
 			</div>
 
 		)
