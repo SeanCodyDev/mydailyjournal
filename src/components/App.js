@@ -1,6 +1,7 @@
 //import libraries
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 
 //import styling
@@ -13,6 +14,11 @@ import LoginPage from './login-page';
 import SignUpPage from './signup-page';
 
 class App extends Component {
+
+  componentDidMount(){
+    console.log(this.props);
+  }
+
   render() {
     return (
     	<Router>
@@ -26,4 +32,6 @@ class App extends Component {
   }
 }
 
-export default App;
+
+
+export default connect()(App);

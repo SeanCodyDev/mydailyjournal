@@ -10,7 +10,9 @@ import './journallist.css';
 export class JournalList extends React.Component {
 
 	onSubmit(values){
-		console.log(values);
+		// console.log(values);
+		// this.props.dispatch(values);
+		this.props.onSubmit(values);
 	}
 
 	render() {
