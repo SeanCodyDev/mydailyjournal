@@ -12,12 +12,12 @@ import './journalbox.css';
 
 export class JournalBox extends React.Component {
 
-	onSubmit(values){
-		console.log('onSubmit from JournalBox');
-		console.log('props:', this.props);
-		console.log('values:', values);
-		this.props.dispatch(listUpdate(this.props, values));
-	}
+	// onSubmit(values){
+	// 	console.log('onSubmit from JournalBox');
+	// 	console.log('props:', this.props);
+	// 	console.log('values:', values);
+	// 	this.props.dispatch(listUpdate(this.props, values));
+	// }
 
 	render() {
 		let prompt = "";
@@ -34,7 +34,7 @@ export class JournalBox extends React.Component {
 
 			<div className="box-wrapper">
 				<h3 className="box-prompt">{prompt}</h3>
-				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)}/>
+				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)} form={this.props.type}/>
 			</div>
 
 		)

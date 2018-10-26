@@ -21,7 +21,7 @@ export const journalReducer = (state = initialState, action) => {
                 message: action.message
             };
         case LIST_UPDATE:
-        	// console.log(action);
+        	console.log(action);
             console.log("state:", state);
         	let newObj = {};
             newObj[action.boxTitle.type] = Object.values(action.entries);

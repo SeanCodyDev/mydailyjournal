@@ -1,6 +1,7 @@
 //import libraries
 import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
+import {listUpdate} from '../actions';
 
 //import components
 import Input from './input';
@@ -9,10 +10,17 @@ import './journallist.css';
 
 export class JournalList extends React.Component {
 
+	// onSubmit(values){
+	// 	// console.log(values);
+	// 	// this.props.dispatch(values);
+	// 	this.props.onSubmit(values);
+	// }
+
 	onSubmit(values){
-		// console.log(values);
-		// this.props.dispatch(values);
-		this.props.onSubmit(values);
+		// console.log('onSubmit from JournalList');
+		// console.log('props:', this.props);
+		console.log('values:', values);
+		this.props.dispatch(listUpdate(this.props, values));
 	}
 
 	render() {
@@ -25,53 +33,30 @@ export class JournalList extends React.Component {
 					<input className="journal-list-item"/>
 				</div>
 
-		} else if (this.props.type === "grateful") {
-			list = 
-				<div>
-					<Field
-						component={Input}
-                        type="text"
-                        name="grateful-one"
-                        id="grateful-one"
-                    />
-                    <Field
-						component={Input}
-                        type="text"
-                        name="grateful-two"
-                        id="grateful-two"
-                    />
-                    <Field
-						component={Input}
-                        type="text"
-                        name="grateful-three"
-                        id="grateful-three"
-                    />
-				</div>
-
 		} else {
 			list = 
 				<div>
 					<Field
 						component={Input}
                         type="text"
-                        name="greatness-one"
-                        id="greatness-one"
+                        name={this.props.type+'-one'}
+                        id={this.props.type+'-one'}
                     />
                     <Field
 						component={Input}
                         type="text"
-                        name="greatness-two"
-                        id="greatness-two"
+                        name={this.props.type+'-two'}
+                        id={this.props.type+'-two'}
                     />
                     <Field
 						component={Input}
                         type="text"
-                        name="greatness-three"
-                        id="greatness-three"
+                        name={this.props.type+'-three'}
+                        id={this.props.type+'-three'}
                     />
 				</div>
 
-		}
+		} 
 
 		return (
 
