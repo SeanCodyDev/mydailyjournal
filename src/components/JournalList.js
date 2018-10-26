@@ -1,7 +1,8 @@
 //import libraries
 import React, { Component } from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+// import {Field, reduxForm, focus} from 'redux-form';
 import {listUpdate} from '../actions';
+import {connect} from 'react-redux';
 
 //import components
 import Input from './input';
@@ -36,20 +37,17 @@ export class JournalList extends React.Component {
 		} else {
 			list = 
 				<div>
-					<Field
-						component={Input}
+					<input
                         type="text"
                         name={this.props.type+'-one'}
                         id={this.props.type+'-one'}
                     />
-                    <Field
-						component={Input}
+                    <input
                         type="text"
                         name={this.props.type+'-two'}
                         id={this.props.type+'-two'}
                     />
-                    <Field
-						component={Input}
+                    <input
                         type="text"
                         name={this.props.type+'-three'}
                         id={this.props.type+'-three'}
@@ -63,10 +61,7 @@ export class JournalList extends React.Component {
 			<div className="journal">
 				<form 
 					className="journal-form"
-					onSubmit={
-                        this.props.handleSubmit(values =>
-                        this.onSubmit(values)
-                    )}
+					onSubmit={values => this.onSubmit(values)}
                 >
 					{list}
 					<button type="submit">Save</button>
@@ -79,7 +74,11 @@ export class JournalList extends React.Component {
 
 }
 
-export default reduxForm({form: 'journal'})(JournalList);
+const mapStateToProps = state => ({
+    // lists: state.boards.lists
+});
+
+export default connect(mapStateToProps)(JournalList);
 
 
 	// render() {
