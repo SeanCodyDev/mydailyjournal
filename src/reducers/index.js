@@ -12,7 +12,7 @@ const initialState = {
 
 //reducer handles actions from /actions/index.js
 export const journalReducer = (state = initialState, action) => {
-	// console.log(state);
+	console.log('state:', state);
     switch (action.type) {
         case HELLO_WORLD:
         	console.log(action.message);

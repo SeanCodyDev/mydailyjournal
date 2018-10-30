@@ -20,13 +20,15 @@ export class JournalBox extends React.Component {
 	// }
 
 	render() {
+		console.log(this.props.lists)
 		let prompt = "";
+		let entries = this.props.lists[this.props.type];
 
 		if (this.props.type === "grateful"){
 			prompt = "I am grateful for...";
 		} else if (this.props.type === "greatness") {
 			prompt = "What will I do to make today great?";
-		} else if (this.props.type === "affirmations") {
+		} else if (this.props.type === "affirmation") {
 			prompt = "Daily affirmations. I am...";
 		}
 
@@ -34,7 +36,7 @@ export class JournalBox extends React.Component {
 
 			<div className="box-wrapper">
 				<h3 className="box-prompt">{prompt}</h3>
-				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)}/>
+				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)} entries={entries} />
 			</div>
 
 		)
@@ -42,4 +44,8 @@ export class JournalBox extends React.Component {
 
 }
 
-export default connect()(JournalBox);
+const mapStateToProps = state => ({
+    lists: state.journal.lists
+});
+
+export default connect(mapStateToProps)(JournalBox);

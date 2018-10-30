@@ -22,7 +22,7 @@ export class Journal extends React.Component {
 				<Header />
 				<JournalBox className="journal-box" type="grateful" />
 				<JournalBox className="journal-box" type="greatness" />
-				<JournalBox className="journal-box" type="affirmations" />
+				<JournalBox className="journal-box" type="affirmation" />
 				<Footer />
 			</div>
 

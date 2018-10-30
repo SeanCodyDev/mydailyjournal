@@ -11,27 +11,41 @@ import './journallist.css';
 
 export class JournalList extends React.Component {
 
-	// onSubmit(values){
-	// 	// console.log(values);
-	// 	// this.props.dispatch(values);
-	// 	this.props.onSubmit(values);
-	// }
 
-	onSubmit(values){
-		// console.log('onSubmit from JournalList');
-		// console.log('props:', this.props);
-		console.log('values:', values);
-		this.props.dispatch(listUpdate(this.props, values));
+	onSubmit(input){
+
+		console.log('input.one.name', input.one.name);
+		console.log('input.length', Object.keys(input).length);
+		let entries = {};
+
+		//filter 'input' object to create a key (name) and value (value)
+		//object 'entries'
+		for (let i=0; i<Object.keys(input).length; i++){
+			// console.log('for loop:', input[Object.keys(input)[i]].name);
+			entries[input[Object.keys(input)[i]].name] = input[Object.keys(input)[i]].value;
+		}
+
+		console.log('entries', entries);
+		this.props.dispatch(listUpdate(this.props, entries));
 	}
 
 	render() {
 
-		let list;
+		console.log('journalList props:', this.props);
 
-		if (this.props.type === "affirmations") {
+		let list;
+		let input = {};
+
+		if (this.props.type === "affirmation") {
 			list = 
 				<div>
-					<input className="journal-list-item"/>
+					<input
+                        type="text"
+                        name={this.props.type+'-one'}
+                        id={this.props.type+'-one'}
+                        ref={node => input.one = node}
+                        value={this.props.entries[0]}
+                    />
 				</div>
 
 		} else {
@@ -41,16 +55,22 @@ export class JournalList extends React.Component {
                         type="text"
                         name={this.props.type+'-one'}
                         id={this.props.type+'-one'}
+                        ref={node => input.one = node}
+                        value={this.props.entries[0]}
                     />
                     <input
                         type="text"
                         name={this.props.type+'-two'}
                         id={this.props.type+'-two'}
+                        ref={node => input.two = node}
+                        value={this.props.entries[1]}
                     />
                     <input
                         type="text"
                         name={this.props.type+'-three'}
                         id={this.props.type+'-three'}
+                        ref={node => input.three = node}
+                        value={this.props.entries[2]}
                     />
 				</div>
 
@@ -61,7 +81,11 @@ export class JournalList extends React.Component {
 			<div className="journal">
 				<form 
 					className="journal-form"
-					onSubmit={values => this.onSubmit(values)}
+					onSubmit={e => {
+						e.preventDefault();
+						console.log("form e:", e)
+						console.log("input", input)
+						this.onSubmit(input)}}
                 >
 					{list}
 					<button type="submit">Save</button>
@@ -75,10 +99,10 @@ export class JournalList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    // lists: state.boards.lists
+    // lists: state
 });
 
-export default connect(mapStateToProps)(JournalList);
+export default connect()(JournalList);
 
 
 	// render() {
