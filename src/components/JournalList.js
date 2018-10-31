@@ -45,6 +45,9 @@ export class JournalList extends React.Component {
                         id={this.props.type+'-one'}
                         ref={node => input.one = node}
                         value={this.props.entries[0]}
+                        onChange={e => {
+						e.preventDefault();
+						this.onSubmit(input)}}
                     />
 				</div>
 
