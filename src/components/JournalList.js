@@ -6,6 +6,8 @@ import {connect} from 'react-redux';
 
 //import components
 import Input from './input';
+import Entry from './entry';
+
 //import styles
 import './journallist.css';
 
@@ -31,48 +33,43 @@ export class JournalList extends React.Component {
 
 	render() {
 
-		console.log('journalList props:', this.props);
-
 		let list;
 		let input = {};
 
 		if (this.props.type === "affirmation") {
 			list = 
 				<div>
-					<input
+					<Entry
                         type="text"
                         name={this.props.type+'-one'}
                         id={this.props.type+'-one'}
-                        ref={node => input.one = node}
                         value={this.props.entries[0]}
-                        onChange={e => {
-						e.preventDefault();
-						this.onSubmit(input)}}
+                        onEdit={e => {
+                        	e.preventDefault();
+                        	console.log('onEdit from journalList');
+                        }}
                     />
 				</div>
 
 		} else {
 			list = 
 				<div>
-					<input
+					<Entry
                         type="text"
                         name={this.props.type+'-one'}
                         id={this.props.type+'-one'}
-                        ref={node => input.one = node}
                         value={this.props.entries[0]}
                     />
-                    <input
+                    <Entry
                         type="text"
                         name={this.props.type+'-two'}
                         id={this.props.type+'-two'}
-                        ref={node => input.two = node}
                         value={this.props.entries[1]}
                     />
-                    <input
+                    <Entry
                         type="text"
                         name={this.props.type+'-three'}
                         id={this.props.type+'-three'}
-                        ref={node => input.three = node}
                         value={this.props.entries[2]}
                     />
 				</div>
@@ -82,18 +79,7 @@ export class JournalList extends React.Component {
 		return (
 
 			<div className="journal">
-				<form 
-					className="journal-form"
-					onSubmit={e => {
-						e.preventDefault();
-						console.log("form e:", e)
-						console.log("input", input)
-						this.onSubmit(input)}}
-                >
-					{list}
-					<button type="submit">Save</button>
-				</form>
-				
+				{list}				
 			</div>
 
 		)

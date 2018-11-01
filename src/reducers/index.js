@@ -3,11 +3,30 @@ import {HELLO_WORLD, LIST_UPDATE} from '../actions';
 
 //set initial state with dummy data
 const initialState = {
-	lists: {
-		grateful: ["meghan", "owen", "calvin"],
-		greatness: ["code", "coach", "play"],
-		affirmation: ["awesome"]
-	}
+    dayEntries: {
+        date: "today",
+        lists: {
+            grateful: {
+                [
+                    {text: "meghan", editing: false},
+                    {text: "owen", editing: false},
+                    {text: "calvin", editing: false}
+                ]    
+            },
+            greatness: {
+                [
+                    {text: "coach", editing: false},
+                    {text: "cody ", editing: false},
+                    {text: "play", editing: false}
+                ]    
+            },
+            affirmation: {
+                [
+                    {text: "awesome", editing: false}
+                ]    
+            }
+        }
+    }
 };
 
 //reducer handles actions from /actions/index.js
