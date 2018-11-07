@@ -20,7 +20,6 @@ export class JournalBox extends React.Component {
 	// }
 
 	render() {
-		console.log(this.props.lists)
 		let prompt = "";
 		let entries = this.props.lists[this.props.type];
 
@@ -45,7 +44,7 @@ export class JournalBox extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    lists: state.journal.lists
+    lists: state.journal.dayEntries.lists
 });
 
 export default connect(mapStateToProps)(JournalBox);

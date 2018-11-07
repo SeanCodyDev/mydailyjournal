@@ -6,25 +6,25 @@ const initialState = {
     dayEntries: {
         date: "today",
         lists: {
-            grateful: {
+            grateful: 
                 [
                     {text: "meghan", editing: false},
                     {text: "owen", editing: false},
                     {text: "calvin", editing: false}
                 ]    
-            },
-            greatness: {
+            ,
+            greatness: 
                 [
                     {text: "coach", editing: false},
                     {text: "cody ", editing: false},
                     {text: "play", editing: false}
                 ]    
-            },
-            affirmation: {
+            ,
+            affirmation: 
                 [
                     {text: "awesome", editing: false}
                 ]    
-            }
+            
         }
     }
 };

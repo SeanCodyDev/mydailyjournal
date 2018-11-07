@@ -9,9 +9,9 @@ export default function Entry(props) {
 
 
     function onEdit() {
-        console.log('editing before:', props.editing);
-        props.editing = !props.editing;
-        console.log('editing after:', props.editing);
+        console.log('editing before:', props.value.editing);
+        props.editing = !props.value.editing;
+        console.log('editing after:', props.value.editing);
         return; 
     }
 
@@ -21,6 +21,7 @@ export default function Entry(props) {
 
 //need to pass to the input element: defaultValue={props.text}
 //is 'input.value' correct, or do I need to look in the journalList for the correct reference?
+
         return (
             <div className="entry">
                 <input 
@@ -38,10 +39,10 @@ export default function Entry(props) {
 
 
     } else {
-        // {props.text} betweens span tags
+
         return(
             <div className="entry">
-                <span className="entry-text" onClick={(e) => onEdit()}>Placeholder Text</span>
+                <span className="entry-text" onClick={(e) => onEdit()}>{props.value.text}</span>
             </div>
         );
 
