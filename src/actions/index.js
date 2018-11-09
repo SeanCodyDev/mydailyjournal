@@ -13,6 +13,13 @@ export const listUpdate = (boxTitle, entries) => ({
     entries
     });
 
+export const SET_EDITING = 'SET_EDITING';
+export const setEditing = (entryList, entryIndex) => ({    
+    type: SET_EDITING,
+    entryList,
+    entryIndex
+    });
+
 // export const SHOW_STATE = 'SHOW_STATE';
 // export const showState = () => ({    
 //     type: SHOW_STATE,

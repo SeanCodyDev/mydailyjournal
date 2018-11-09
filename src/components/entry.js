@@ -2,51 +2,50 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+//import actions
+import {helloWorld} from '../actions';
 
 //import styling
 
-export default function Entry(props) {
+export class Entry extends React.Component {
+
+    render() {
+
+        if (this.props.editing) {
+            console.log('edit me now');
+            let input;
+
+    //need to pass to the input element: defaultValue={props.text}
+    //is 'input.value' correct, or do I need to look in the journalList for the correct reference?
+
+            return (
+                <div className="entry">
+                    <input 
+                        type="text" 
+                        defaultValue="default placeholder" 
+                        ref={node => input = node} 
+                        onChange={e => {
+                            e.preventDefault();
+                            console.log(input.value);
+                            this.props.onUpdate(input.value);
+                    }}/>
+                </div>
+
+            )
 
 
-    function onEdit() {
-        console.log('editing before:', props.value.editing);
-        props.editing = !props.value.editing;
-        console.log('editing after:', props.value.editing);
-        return; 
-    }
+        } else {
+            // console.log(this.props)
+            let editing = this.props.editing.toString();
 
-    if (props.editing) {
-        console.log('edit me now');
-        let input;
+            return(
+                <div className="entry">
+                    <span className="entry-text" onClick={(e) => this.props.onEdit(e)}>{this.props.text} {editing}</span>
+                </div>
+            );
 
-//need to pass to the input element: defaultValue={props.text}
-//is 'input.value' correct, or do I need to look in the journalList for the correct reference?
-
-        return (
-            <div className="entry">
-                <input 
-                    type="text" 
-                    defaultValue="default placeholder" 
-                    ref={node => input = node} 
-                    onChange={e => {
-                        e.preventDefault();
-                        console.log(input.value);
-                        props.onUpdate(input.value);
-                }}/>
-            </div>
-
-        )
-
-
-    } else {
-
-        return(
-            <div className="entry">
-                <span className="entry-text" onClick={(e) => onEdit()}>{props.value.text}</span>
-            </div>
-        );
-
-    }
+        }
+}
 
 };
 
@@ -54,5 +53,11 @@ Entry.defaultProps = {
     text: '',
     editing: false
 };
+
+const mapStateToProps = state => ({
+    // lists: state
+});
+
+export default connect()(Entry);
 
 

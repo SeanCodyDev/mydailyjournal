@@ -1,7 +1,7 @@
 //import libraries
 import React, { Component } from 'react';
 // import {Field, reduxForm, focus} from 'redux-form';
-import {listUpdate} from '../actions';
+import {listUpdate, setEditing} from '../actions';
 import {connect} from 'react-redux';
 
 //import components
@@ -13,6 +13,11 @@ import './journallist.css';
 
 export class JournalList extends React.Component {
 
+	editEntry(entryList, entryIndex){
+
+		this.props.dispatch(setEditing(entryList, entryIndex));
+
+	}
 
 	onSubmit(input){
 
@@ -33,53 +38,63 @@ export class JournalList extends React.Component {
 
 	render() {
 
-		let list;
-		let input = {};
+		const entries = this.props.entries.map((entry, index) =>
+            <li className="journal-list-item" key={index}>
+                <Entry {...entry}
+                	type="text"
+                    onEdit={e => {
+                        e.preventDefault();
+                        this.editEntry(this.props.type, {index});
+                    }}
 
-		if (this.props.type === "affirmation") {
-			list = 
-				<div>
-					<Entry
-                        type="text"
-                        name={this.props.type+'-one'}
-                        id={this.props.type+'-one'}
-                        value={this.props.entries[0]}
-                        onEdit={e => {
-                        	e.preventDefault();
-                        	console.log('onEdit from journalList');
-                        }}
-                    />
-				</div>
+                />
+            </li>
+        );
 
-		} else {
-			list = 
-				<div>
-					<Entry
-                        type="text"
-                        name={this.props.type+'-one'}
-                        id={this.props.type+'-one'}
-                        value={this.props.entries[0]}
-                    />
-                    <Entry
-                        type="text"
-                        name={this.props.type+'-two'}
-                        id={this.props.type+'-two'}
-                        value={this.props.entries[1]}
-                    />
-                    <Entry
-                        type="text"
-                        name={this.props.type+'-three'}
-                        id={this.props.type+'-three'}
-                        value={this.props.entries[2]}
-                    />
-				</div>
+		// if (this.props.type === "affirmation") {
+		// 	list = 
+		// 		<div>
+		// 			<Entry
+  //                       type="text"
+  //                       name={this.props.type+'-one'}
+  //                       id={this.props.type+'-one'}
+  //                       value={this.props.entries[0]}
+  //                       onEdit={e => {
+  //                       	e.preventDefault();
+  //                       	console.log('onEdit from journalList');
+  //                       }}
+  //                   />
+		// 		</div>
 
-		} 
+		// } else {
+		// 	list = 
+		// 		<div>
+		// 			<Entry
+  //                       type="text"
+  //                       name={this.props.type+'-one'}
+  //                       id={this.props.type+'-one'}
+  //                       value={this.props.entries[0]}
+  //                   />
+  //                   <Entry
+  //                       type="text"
+  //                       name={this.props.type+'-two'}
+  //                       id={this.props.type+'-two'}
+  //                       value={this.props.entries[1]}
+  //                   />
+  //                   <Entry
+  //                       type="text"
+  //                       name={this.props.type+'-three'}
+  //                       id={this.props.type+'-three'}
+  //                       value={this.props.entries[2]}
+  //                   />
+		// 		</div>
+
+		// } 
 
 		return (
 
 			<div className="journal">
-				{list}				
+				{entries}				
 			</div>
 
 		)
@@ -93,39 +108,3 @@ const mapStateToProps = state => ({
 
 export default connect()(JournalList);
 
-
-	// render() {
-
-	// 	let list;
-
-	// 	if (this.props.type === "affirmations") {
-	// 		list = 
-	// 			<div>
-	// 				<form className="journal-form">
-	// 					<input className="journal-list-item"/>
-	// 				</form>
-	// 			</div>
-
-	// 	} else {
-	// 		list = 
-	// 			<div>
-	// 				<form className="journal-form" onSubmit={e => this.checkInput(e)}>
-	// 					<input className="journal-list-item" ref={input => this.journalInputOne = input}/>
-	// 					<input className="journal-list-item" ref={input => this.journalInputTwo = input}/>
-	// 					<input className="journal-list-item" ref={input => this.journalInputThree = input}/>
-	// 					<button type="submit">Save</button>
-	// 				</form>
-	// 			</div>
-
-	// 	}
-
-	// 	return (
-
-	// 		<div className="journal-">
-	// 			{list}
-				
-	// 		</div>
-
-
-	// 	)
-	// }

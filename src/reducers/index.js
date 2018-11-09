@@ -1,31 +1,53 @@
 //import actions
-import {HELLO_WORLD, LIST_UPDATE} from '../actions';
+import {HELLO_WORLD, LIST_UPDATE, SET_EDITING} from '../actions';
 
 //set initial state with dummy data
+// const initialState = {
+//     dayEntries: {
+//         date: "today",
+//         lists: {
+//             grateful: 
+//                 [
+//                     {text: "meghan", editing: false},
+//                     {text: "owen", editing: false},
+//                     {text: "calvin", editing: false}
+//                 ]    
+//             ,
+//             greatness: 
+//                 [
+//                     {text: "coach", editing: false},
+//                     {text: "cody ", editing: false},
+//                     {text: "play", editing: false}
+//                 ]    
+//             ,
+//             affirmation: 
+//                 [
+//                     {text: "awesome", editing: false}
+//                 ]    
+            
+//         }
+//     }
+// };
+
 const initialState = {
     dayEntries: {
         date: "today",
-        lists: {
-            grateful: 
-                [
-                    {text: "meghan", editing: false},
-                    {text: "owen", editing: false},
-                    {text: "calvin", editing: false}
-                ]    
-            ,
-            greatness: 
-                [
-                    {text: "coach", editing: false},
-                    {text: "cody ", editing: false},
-                    {text: "play", editing: false}
-                ]    
-            ,
-            affirmation: 
-                [
-                    {text: "awesome", editing: false}
-                ]    
-            
-        }
+        grateful: 
+            [
+                {text: "meghan", editing: false},
+                {text: "owen", editing: false},
+                {text: "calvin", editing: false}
+            ],
+        greatness: 
+            [
+                {text: "coach", editing: false},
+                {text: "cody ", editing: false},
+                {text: "play", editing: false}
+            ],
+        affirmation: 
+            [
+                {text: "awesome", editing: false}
+            ]    
     }
 };
 
@@ -39,6 +61,9 @@ export const journalReducer = (state = initialState, action) => {
                 ...state,
                 message: action.message
             };
+
+
+
         case LIST_UPDATE:
         	console.log(action);
             console.log("state:", state);
@@ -50,6 +75,40 @@ export const journalReducer = (state = initialState, action) => {
             let newState = Object.assign({}, state, {lists: newLists});
             console.log("newState:", newState);
         	return Object.assign({}, state, {lists: newLists});
+
+
+
+        case SET_EDITING:
+            console.log('setEditing action', action)
+
+            //map through state entries, searching for the one that meets the criteria of the action package
+            let targetList = Object.keys(state.dayEntries).filter((key, index) => {
+                if (key == action.entryList) {
+                    return key;
+                }
+            });
+
+            // console.log("targetList", targetList);
+            // console.log('action.entryIndex', action);
+
+            let targetEntry = state.dayEntries[targetList][action.entryIndex.index];
+            // console.log('targetEntry', targetEntry);
+
+            let updatedList = {};
+            updatedList[targetList] = state.dayEntries[targetList].map((entry, index) => {
+                if (index == action.entryIndex.index) {
+                    return {...entry, editing: true};
+                } else {
+                    return entry;
+                }
+            });
+
+            // console.log(updatedList);
+            console.log({...state, dayEntries: {...state.dayEntries, [targetList]: updatedList[targetList]}});
+
+
+            return {...state, dayEntries: {...state.dayEntries, [targetList]: updatedList[targetList]}};
+
 
         default:
             return state

@@ -16,7 +16,7 @@ import SignUpPage from './signup-page';
 class App extends Component {
 
   componentDidMount(){
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   render() {
