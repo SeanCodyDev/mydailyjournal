@@ -1,7 +1,7 @@
 //import libraries
 import React, { Component } from 'react';
 // import {Field, reduxForm, focus} from 'redux-form';
-import {listUpdate, setEditing} from '../actions';
+import {listUpdate, setEditing, updateEntry} from '../actions';
 import {connect} from 'react-redux';
 
 //import components
@@ -14,9 +14,13 @@ import './journallist.css';
 export class JournalList extends React.Component {
 
 	editEntry(entryList, entryIndex){
-
 		this.props.dispatch(setEditing(entryList, entryIndex));
 
+	}
+
+	updateEntry(e, entryList, entryIndex){
+		console.log('e.target', e.target)
+		this.props.dispatch(updateEntry(entryList, entryIndex));
 	}
 
 	onSubmit(input){
@@ -46,55 +50,24 @@ export class JournalList extends React.Component {
                         e.preventDefault();
                         this.editEntry(this.props.type, {index});
                     }}
+                    onUpdate={e => {
+                        e.preventDefault();
+                        this.updateEntry(this.props.type, {index});
+                    }}
 
                 />
             </li>
         );
 
-		// if (this.props.type === "affirmation") {
-		// 	list = 
-		// 		<div>
-		// 			<Entry
-  //                       type="text"
-  //                       name={this.props.type+'-one'}
-  //                       id={this.props.type+'-one'}
-  //                       value={this.props.entries[0]}
-  //                       onEdit={e => {
-  //                       	e.preventDefault();
-  //                       	console.log('onEdit from journalList');
-  //                       }}
-  //                   />
-		// 		</div>
-
-		// } else {
-		// 	list = 
-		// 		<div>
-		// 			<Entry
-  //                       type="text"
-  //                       name={this.props.type+'-one'}
-  //                       id={this.props.type+'-one'}
-  //                       value={this.props.entries[0]}
-  //                   />
-  //                   <Entry
-  //                       type="text"
-  //                       name={this.props.type+'-two'}
-  //                       id={this.props.type+'-two'}
-  //                       value={this.props.entries[1]}
-  //                   />
-  //                   <Entry
-  //                       type="text"
-  //                       name={this.props.type+'-three'}
-  //                       id={this.props.type+'-three'}
-  //                       value={this.props.entries[2]}
-  //                   />
-		// 		</div>
-
-		// } 
-
 		return (
 
 			<div className="journal">
-				{entries}				
+				<form onSubmit={e => { 
+					e.preventDefault();
+					this.updateEntry(e)}}>
+					{entries}
+					<button type='submit' className="save-button">Save</button>
+				</form>				
 			</div>
 
 		)

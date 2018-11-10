@@ -1,33 +1,6 @@
 //import actions
-import {HELLO_WORLD, LIST_UPDATE, SET_EDITING} from '../actions';
+import {LIST_UPDATE, SET_EDITING, UPDATE_ENTRY} from '../actions';
 
-//set initial state with dummy data
-// const initialState = {
-//     dayEntries: {
-//         date: "today",
-//         lists: {
-//             grateful: 
-//                 [
-//                     {text: "meghan", editing: false},
-//                     {text: "owen", editing: false},
-//                     {text: "calvin", editing: false}
-//                 ]    
-//             ,
-//             greatness: 
-//                 [
-//                     {text: "coach", editing: false},
-//                     {text: "cody ", editing: false},
-//                     {text: "play", editing: false}
-//                 ]    
-//             ,
-//             affirmation: 
-//                 [
-//                     {text: "awesome", editing: false}
-//                 ]    
-            
-//         }
-//     }
-// };
 
 const initialState = {
     dayEntries: {
@@ -53,16 +26,8 @@ const initialState = {
 
 //reducer handles actions from /actions/index.js
 export const journalReducer = (state = initialState, action) => {
-	console.log('state:', state);
+	// console.log('state:', state);
     switch (action.type) {
-        case HELLO_WORLD:
-        	console.log(action.message);
-            return {
-                ...state,
-                message: action.message
-            };
-
-
 
         case LIST_UPDATE:
         	console.log(action);
@@ -103,11 +68,13 @@ export const journalReducer = (state = initialState, action) => {
                 }
             });
 
-            // console.log(updatedList);
             console.log({...state, dayEntries: {...state.dayEntries, [targetList]: updatedList[targetList]}});
 
 
             return {...state, dayEntries: {...state.dayEntries, [targetList]: updatedList[targetList]}};
+
+        case UPDATE_ENTRY:
+            console.log('hello from UPDATE_ENTRY');
 
 
         default:

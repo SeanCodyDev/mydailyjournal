@@ -1,7 +1,6 @@
 //libraries
 import React from 'react';
 import {connect} from 'react-redux';
-import {helloWorld} from '../actions';
 
 
 //components
@@ -36,7 +35,6 @@ export class SignUpForm extends React.Component {
                     <input type="text" name="password" />
                     <label htmlFor="passwordConfirm">Confirm Password</label>
                     <input type="text" name="passwordConfirm" />
-                    <button type="submit" className="signup-button" onClick={() => this.props.dispatch(helloWorld('hello'))}>HELLO WORLD</button>
                 </form>
             </div>
 

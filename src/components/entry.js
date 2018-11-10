@@ -24,10 +24,10 @@ export class Entry extends React.Component {
                         type="text" 
                         defaultValue="default placeholder" 
                         ref={node => input = node} 
-                        onChange={e => {
+                        onBlur={e => {
                             e.preventDefault();
-                            console.log(input.value);
-                            this.props.onUpdate(input.value);
+                            console.log('blurred', input.value);
+                            this.props.onUpdate(e)
                     }}/>
                 </div>
 

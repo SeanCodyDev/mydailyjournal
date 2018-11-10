@@ -1,11 +1,4 @@
 
-
-export const HELLO_WORLD = 'HELLO_WORLD';
-export const helloWorld = (message) => ({    
-    type: HELLO_WORLD,
-    message
-    });
-
 export const LIST_UPDATE = 'LIST_UPDATE';
 export const listUpdate = (boxTitle, entries) => ({    
     type: LIST_UPDATE,
@@ -19,6 +12,13 @@ export const setEditing = (entryList, entryIndex) => ({
     entryList,
     entryIndex
     });
+
+export const UPDATE_ENTRY = 'UPDATE_ENTRY';
+export const updateEntry = (entryList, entryIndex) => ({
+	type: UPDATE_ENTRY,
+	entryList,
+	entryIndex
+	});
 
 // export const SHOW_STATE = 'SHOW_STATE';
 // export const showState = () => ({    
