@@ -42,19 +42,19 @@ export class JournalList extends React.Component {
 
 	onSubmit(input){
 
-		console.log('input.one.name', input.one.name);
-		console.log('input.length', Object.keys(input).length);
-		let entries = {};
+		console.log('values', input);
+		// console.log('input.length', Object.keys(input).length);
+		// let entries = {};
 
-		//filter 'input' object to create a key (name) and value (value)
-		//object 'entries'
-		for (let i=0; i<Object.keys(input).length; i++){
-			// console.log('for loop:', input[Object.keys(input)[i]].name);
-			entries[input[Object.keys(input)[i]].name] = input[Object.keys(input)[i]].value;
-		}
+		// //filter 'input' object to create a key (name) and value (value)
+		// //object 'entries'
+		// for (let i=0; i<Object.keys(input).length; i++){
+		// 	// console.log('for loop:', input[Object.keys(input)[i]].name);
+		// 	entries[input[Object.keys(input)[i]].name] = input[Object.keys(input)[i]].value;
+		// }
 
-		console.log('entries', entries);
-		this.props.dispatch(listUpdate(this.props, entries));
+		// console.log('entries', entries);
+		// this.props.dispatch(listUpdate(this.props, entries));
 	}
 
 	render() {
@@ -85,9 +85,10 @@ export class JournalList extends React.Component {
 		return (
 
 			<div className="journal">
-				<form onSubmit={e => { 
-					e.preventDefault();
-					this.updateEntry(e)}}>
+				<form onSubmit={
+                        this.props.handleSubmit(values =>
+                        this.onSubmit(values)
+                    )}>
 					{entries}
 					<button type='submit' className="save-button">Save</button>
 				</form>				

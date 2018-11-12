@@ -13,8 +13,7 @@ export default class Header extends React.Component{
 		return (
 			<div className="header">
 				<h1 className="app-title">MyDailyJournal</h1>
-				<button className="save-button">Save</button>
-				<button className="logout-button">Logout</button>
+				<button className="logout-button">Logout(Dummy)</button>
 			</div>
 
 		)
