@@ -35,7 +35,7 @@ export class JournalBox extends React.Component {
 
 			<div className="box-wrapper">
 				<h3 className="box-prompt">{prompt}</h3>
-				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)} entries={entries} />
+				<JournalList form={this.props.type} type={this.props.type} onSubmit={values => this.onSubmit(values)} entries={entries} />
 			</div>
 
 		)

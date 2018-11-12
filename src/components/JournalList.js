@@ -1,6 +1,6 @@
 //import libraries
 import React, { Component } from 'react';
-// import {Field, reduxForm, focus} from 'redux-form';
+import {Field, reduxForm, focus} from 'redux-form';
 import {listUpdate, setEditing, updateEntry} from '../actions';
 import {connect} from 'react-redux';
 
@@ -12,6 +12,22 @@ import Entry from './entry';
 import './journallist.css';
 
 export class JournalList extends React.Component {
+
+	componentDidMount(){
+		this.handleInitialize();
+
+	}
+
+	handleInitialize(){
+
+		let initDataActual = {};
+
+		for (let i=0; i<this.props.entries.length; i++){
+			initDataActual[`${this.props.type}-${i}`] = this.props.entries[i].text;
+		}
+
+		this.props.initialize(initDataActual);
+	}
 
 	editEntry(entryList, entryIndex){
 		this.props.dispatch(setEditing(entryList, entryIndex));
@@ -43,15 +59,16 @@ export class JournalList extends React.Component {
 
 	render() {
 
-		console.log('journalList props', this.props)
+		// console.log('journalList props', this.props)
 		let input;
 
 		const entries = this.props.entries.map((entry, index) =>
             <li className="journal-list-item" key={index}>
-                <Entry {...entry}
-                	type="text"
-                	ref={node => input = node}
-                	// refKey={`${this.props.type} ${index}`}
+            	<Field
+            		component={Input}
+                    type="text"
+                    name={`${this.props.type}-${index}`}
+                    id={`${this.props.type}-${index}`}
                     onEdit={e => {
                         e.preventDefault();
                         console.log('input', input);
@@ -61,7 +78,6 @@ export class JournalList extends React.Component {
                         e.preventDefault();
                         this.updateEntry(this.props.type, {index});
                     }}
-
                 />
             </li>
         );
@@ -82,9 +98,9 @@ export class JournalList extends React.Component {
 
 }
 
-const mapStateToProps = state => ({
-    // lists: state
+const mapStateToProps = (state) => ({
+    dayEntries: state
 });
 
-export default connect()(JournalList);
+export default reduxForm()(connect(mapStateToProps)(JournalList));
 
