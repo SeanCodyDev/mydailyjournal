@@ -16,6 +16,7 @@ export class JournalList extends React.Component {
 	editEntry(entryList, entryIndex){
 		this.props.dispatch(setEditing(entryList, entryIndex));
 
+
 	}
 
 	updateEntry(e, entryList, entryIndex){
@@ -42,12 +43,18 @@ export class JournalList extends React.Component {
 
 	render() {
 
+		console.log('journalList props', this.props)
+		let input;
+
 		const entries = this.props.entries.map((entry, index) =>
             <li className="journal-list-item" key={index}>
                 <Entry {...entry}
                 	type="text"
+                	ref={node => input = node}
+                	// refKey={`${this.props.type} ${index}`}
                     onEdit={e => {
                         e.preventDefault();
+                        console.log('input', input);
                         this.editEntry(this.props.type, {index});
                     }}
                     onUpdate={e => {

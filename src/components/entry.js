@@ -11,6 +11,8 @@ export class Entry extends React.Component {
 
     render() {
 
+        // console.log('entry props', this.props)
+
         if (this.props.editing) {
             console.log('edit me now');
             let input;
@@ -23,7 +25,7 @@ export class Entry extends React.Component {
                     <input 
                         type="text" 
                         defaultValue="default placeholder" 
-                        ref={node => input = node} 
+                        // ref={node => this.props.type = node} 
                         onBlur={e => {
                             e.preventDefault();
                             console.log('blurred', input.value);
