@@ -1,6 +1,6 @@
 //import libraries
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
@@ -21,13 +21,11 @@ class App extends Component {
 
   render() {
     return (
-    	<Router>
 	    	<div className="App">
 		    	<Route exact path="/" component={Journal} />
 		    	<Route exact path="/register" component={SignUpPage} />		    	
 		    	<Route exact path="/login" component={LoginPage} />
 	    	</div>
-    	</Router>
     );
   }
 }
