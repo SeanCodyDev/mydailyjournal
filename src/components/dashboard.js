@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
 //import components
 import JournalBox from './JournalBox';
@@ -11,8 +12,17 @@ import Footer from './Footer';
 //import styling
 import './dashboard.css';
 
+//import actions
+import {getEntries} from '../actions';
+
 
 export class Dashboard extends React.Component {
+
+	componentDidMount(){
+		let date = moment().format("MMM D YYYY");
+		console.log(date);
+		this.props.dispatch(getEntries(date));
+	}
 
 	render() {
 

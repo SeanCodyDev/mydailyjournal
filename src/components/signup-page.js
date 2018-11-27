@@ -5,6 +5,7 @@ import {Redirect} from 'react-router-dom';
 
 //import components
 import SignUpForm from './signup-form';
+import Header from './header';
 
 //import styling
 import './signup-page.css';
@@ -14,13 +15,14 @@ export function SignUpPage(props) {
     // If we are logged in (which happens automatically when registration
     // is successful) redirect to the user's dashboard
 
-	if (props.loggedin){
-		<Redirect to="/dashboard" />
+	if (props.loggedIn){
+		return <Redirect to="/dashboard" />
 	}
 
 	return (
 
 		<div>
+			<Header />
 			<div className="signup-card">
 				<SignUpForm />
 			</div>

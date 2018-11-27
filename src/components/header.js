@@ -27,7 +27,7 @@ export class Header extends React.Component{
         if (this.props.loggedIn) {
             welcome = (
                 <Navbar.Text>
-                  Signed in as: {this.props.username}
+                  Signed in as: {this.props.user.username}
                 </Navbar.Text>
             );
         }

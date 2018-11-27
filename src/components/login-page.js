@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 
 //import components
 import LoginForm from './login-form';
+import Header from './header'
 
 //import styling
 import './login-page.css';
@@ -21,7 +22,9 @@ export function LoginPage(props) {
 	}
 
 	return (
+
 		<div>
+			<Header />
 			<div className="login-card">
 				<LoginForm />
 			</div>
