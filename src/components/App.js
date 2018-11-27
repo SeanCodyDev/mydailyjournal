@@ -1,6 +1,6 @@
 //import libraries
 import React, { Component } from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route, Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 
@@ -8,10 +8,11 @@ import {connect} from 'react-redux';
 import './App.css';
 
 //import components
-import Journal from './Journal';
+import Dashboard from './dashboard';
 import Footer from './Footer';
 import LoginPage from './login-page';
 import SignUpPage from './signup-page';
+import LandingPage from './landing';
 
 class App extends Component {
 
@@ -22,7 +23,8 @@ class App extends Component {
   render() {
     return (
 	    	<div className="App">
-		    	<Route exact path="/" component={Journal} />
+          <Route exact path="/" component={LandingPage} />
+		    	<Route exact path="/dashboard" component={Dashboard} />
 		    	<Route exact path="/register" component={SignUpPage} />		    	
 		    	<Route exact path="/login" component={LoginPage} />
 	    	</div>
@@ -32,4 +34,4 @@ class App extends Component {
 
 
 
-export default connect()(App);
+export default withRouter(connect()(App));

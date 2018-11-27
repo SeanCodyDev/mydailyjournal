@@ -3,9 +3,15 @@
 	padding: 5px;
 }
 
-.app-title {
+button {
+	padding: 5px;
+	margin: 5px;
+}
+
+.navbar-brand {
 	text-align: center;
 	padding-bottom: 20px;
+	font-family: 'Lato', sans-serif;
 }
 
 .header {

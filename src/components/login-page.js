@@ -1,5 +1,7 @@
 //import libraries
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 //import components
 import LoginForm from './login-form';
@@ -7,13 +9,16 @@ import LoginForm from './login-form';
 //import styling
 import './login-page.css';
 
-export default function LoginPage(props) {
+export function LoginPage(props) {
 
     // If we are logged in (which happens automatically when registration
     // is successful) redirect to the user's dashboard
-	// if (props.loggedin){
-	// 	<Redirect to="/" />
-	// }
+
+    console.log("LoginPage props:", props);
+	if (props.loggedIn){
+		console.log('logged in!');
+		return <Redirect to="/" />
+	}
 
 	return (
 		<div>
@@ -27,3 +32,9 @@ export default function LoginPage(props) {
 
 	)
 }
+
+const mapStateToProps = state => ({
+    loggedIn: state.auth.currentUser !== null
+});
+
+export default connect(mapStateToProps)(LoginPage);

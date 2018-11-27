@@ -38,14 +38,22 @@ const storeAuthInfo = (authToken, dispatch) => {
 export const login = (username, password) => dispatch => {
     // Base64 encode the string username:password, used in the basic
     // auth field
+    console.log(JSON.stringify({username, password}));
     const token = base64EncodingUTF8(`${username}:${password}`);
     return (
-        fetch(`${API_BASE_URL}/login`, {
+        // fetch(`${API_BASE_URL}/api/auth/login`, {
+        //     method: 'POST',
+        //     headers: {
+        //         // Provide our username and password as login credentials
+        //         Authorization: `Basic ${token}`
+        //     }
+        // })
+        fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
-                // Provide our username and password as login credentials
-                Authorization: `Basic ${token}`
-            }
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({username, password})
         })
             // Reject any requests which don't return a 200 status, creating
             // errors which follow a consistent format
