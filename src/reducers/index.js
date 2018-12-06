@@ -1,5 +1,5 @@
 //import actions
-import {LIST_UPDATE, SET_EDITING, UPDATE_ENTRY} from '../actions';
+import {LIST_UPDATE, SET_EDITING, UPDATE_ENTRY, LOAD_ENTRIES} from '../actions';
 
 
 const initialState = {
@@ -75,6 +75,9 @@ export const journalReducer = (state = initialState, action) => {
 
         case UPDATE_ENTRY:
             console.log('hello from UPDATE_ENTRY');
+
+        case LOAD_ENTRIES:
+            console.log('LOAD_ENTRIES action:', action.data)
 
 
         default:

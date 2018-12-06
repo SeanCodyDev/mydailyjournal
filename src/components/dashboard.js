@@ -20,7 +20,7 @@ export class Dashboard extends React.Component {
 
 	componentDidMount(){
 		let date = moment().format("MMM D YYYY");
-		console.log(date);
+		console.log('fetching for dashboard with date:', date);
 		this.props.dispatch(getEntries(date));
 	}
 

@@ -24,6 +24,12 @@ export const updateEntry = (entryList, entryIndex) => ({
 	entryIndex
 	});
 
+export const LOAD_ENTRIES = 'LOAD_ENTRIES';
+export const loadEntries = (data) => ({
+    type: LOAD_ENTRIES,
+    data
+    });
+
 export const getEntries = (date) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/days/getEntries`, {
@@ -38,6 +44,7 @@ export const getEntries = (date) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
+        .then((data) => dispatch(loadEntries(data)))
         .catch(err => {
             console.log(err);
             // dispatch(fetchProtectedDataError(err));
