@@ -18,13 +18,21 @@ import {getEntries} from '../actions';
 
 export class Dashboard extends React.Component {
 
-	componentDidMount(){
+	componentWillMount(){
+		console.log('dashboard mounted!')
+		if (!this.props.loggedIn){
+			return 
+		}
+
 		let date = moment().format("MMM D YYYY");
 		console.log('fetching for dashboard with date:', date);
-		this.props.dispatch(getEntries(date));
+		//hardcoded for now
+		this.props.dispatch(getEntries("Dec 20 2018"));
 	}
 
 	render() {
+
+		console.log('dashboard props: ', this.props)
 
 		if (!this.props.loggedIn){
 			return <Redirect to="/" />;
@@ -48,7 +56,8 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    dayEntries: state.journal.dayEntries
 });
 
 export default connect(mapStateToProps)(Dashboard);

@@ -13,7 +13,7 @@ import './journallist.css';
 
 export class JournalList extends React.Component {
 
-	componentDidMount(){
+	componentDidUpdate(){
 		this.handleInitialize();
 
 	}
@@ -22,8 +22,10 @@ export class JournalList extends React.Component {
 
 		let initDataActual = {};
 
-		for (let i=0; i<this.props.entries.length; i++){
-			initDataActual[`${this.props.type}-${i}`] = this.props.entries[i].text;
+		for (let i=0; i<this.props.dayEntries[this.props.type].length; i++){
+			// initDataActual[`${this.props.type}-${i}`] = this.props.entries[i].text;
+			initDataActual[`${this.props.type}-${i}`] = this.props.dayEntries[this.props.type][i].text;
+
 		}
 
 		this.props.initialize(initDataActual);
@@ -59,27 +61,31 @@ export class JournalList extends React.Component {
 
 	render() {
 
-		// console.log('journalList props', this.props)
+		// console.log('journalList props', this.props.dayEntries[this.props.type])
 		let input;
 
-		const entries = this.props.entries.map((entry, index) =>
-            <li className="journal-list-item" key={index}>
-            	<Field
-            		component={Input}
-                    type="text"
-                    name={`${this.props.type}-${index}`}
-                    id={`${this.props.type}-${index}`}
-                    onEdit={e => {
-                        e.preventDefault();
-                        console.log('input', input);
-                        this.editEntry(this.props.type, {index});
-                    }}
-                    onUpdate={e => {
-                        e.preventDefault();
-                        this.updateEntry(this.props.type, {index});
-                    }}
-                />
-            </li>
+		//hardcoded for 'grateful'
+		const entries = this.props.dayEntries[this.props.type].map((entry, index) => {
+			console.log('entry', entry);
+			return (
+	            <li className="journal-list-item" key={index}>
+	            	<Field
+	            		component={Input}
+	                    type="text"
+	                    name={`${this.props.type}-${index}`}
+	                    id={`${this.props.type}-${index}`}
+	                    onEdit={e => {
+	                        e.preventDefault();
+	                        console.log('input', input);
+	                        this.editEntry(this.props.type, {index});
+	                    }}
+	                    onUpdate={e => {
+	                        e.preventDefault();
+	                        this.updateEntry(this.props.type, {index});
+	                    }}
+	                />
+	            </li>
+            )}
         );
 
 		return (
@@ -100,7 +106,7 @@ export class JournalList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    dayEntries: state
+    dayEntries: state.journal.dayEntries
 });
 
 export default reduxForm()(connect(mapStateToProps)(JournalList));

@@ -33,6 +33,7 @@ export const loadEntries = (data) => ({
 export const getEntries = (date) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/days/getEntries`, {
+        mode: 'cors',
         method: 'POST',
         body: JSON.stringify({date: date}),
         headers: {
@@ -44,7 +45,9 @@ export const getEntries = (date) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then((data) => dispatch(loadEntries(data)))
+        .then(body => {
+            console.log(body)
+            return dispatch(loadEntries(body))})
         .catch(err => {
             console.log(err);
             // dispatch(fetchProtectedDataError(err));

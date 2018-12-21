@@ -4,23 +4,30 @@ import {LIST_UPDATE, SET_EDITING, UPDATE_ENTRY, LOAD_ENTRIES} from '../actions';
 
 const initialState = {
     dayEntries: {
-        date: "today",
+        user: "",
+        date: "",
         grateful: 
-            [
-                {text: "meghan", editing: false},
-                {text: "owen", editing: false},
-                {text: "calvin", editing: false}
-            ],
+            [],
         greatness: 
-            [
-                {text: "coach", editing: false},
-                {text: "cody ", editing: false},
-                {text: "play", editing: false}
-            ],
+            [],
         affirmation: 
-            [
-                {text: "awesome", editing: false}
-            ]    
+            []            
+        // grateful: 
+        //     [
+        //         {text: "meghan", editing: false},
+        //         {text: "owen", editing: false},
+        //         {text: "calvin", editing: false}
+        //     ],
+        // greatness: 
+        //     [
+        //         {text: "coach", editing: false},
+        //         {text: "cody ", editing: false},
+        //         {text: "play", editing: false}
+        //     ],
+        // affirmation: 
+        //     [
+        //         {text: "awesome", editing: false}
+        //     ]    
     }
 };
 
@@ -77,7 +84,10 @@ export const journalReducer = (state = initialState, action) => {
             console.log('hello from UPDATE_ENTRY');
 
         case LOAD_ENTRIES:
-            console.log('LOAD_ENTRIES action:', action.data)
+            console.log('LOAD_ENTRIES action:', action.data[0])
+            newState = {...state, dayEntries: action.data[0]}
+            console.log("newState:", newState);
+            return newState
 
 
         default:
