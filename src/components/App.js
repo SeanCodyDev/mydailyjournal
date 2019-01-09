@@ -10,6 +10,8 @@ import './App.css';
 
 //import actions
 import {getEntries} from '../actions';
+import {login} from '../actions/auth';
+
 
 //import components
 import Dashboard from './dashboard';
@@ -24,7 +26,9 @@ class App extends Component {
     // console.log(this.props);
   }
 
-  //   componentWillMount(){
+    componentWillMount(){
+      //for development... save time repeatedly logging in
+      return this.props.dispatch(login("123", "meghancody"));
   //     console.log('app mounted');
   //   if (!this.props.loggedIn){
   //     return 
@@ -34,7 +38,7 @@ class App extends Component {
   //   console.log('fetching for App with date:', date);
   //   //hardcoded for now
   //   this.props.dispatch(getEntries("Dec 20 2018"));
-  // }
+  }
 
   render() {
     return (

@@ -7,11 +7,11 @@ const initialState = {
         user: "",
         date: "",
         grateful: 
-            [],
+            [{}, {}, {}],
         greatness: 
-            [],
+            [{}, {}, {}],
         affirmation: 
-            []            
+            [{}]            
         // grateful: 
         //     [
         //         {text: "meghan", editing: false},
@@ -84,6 +84,10 @@ export const journalReducer = (state = initialState, action) => {
             console.log('hello from UPDATE_ENTRY');
 
         case LOAD_ENTRIES:
+            //if there are no entries, return a blank state
+            if (action.data.length === 0){
+                return state;
+            }
             console.log('LOAD_ENTRIES action:', action.data[0])
             newState = {...state, dayEntries: action.data[0]}
             console.log("newState:", newState);

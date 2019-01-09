@@ -34,7 +34,6 @@ export class JournalList extends React.Component {
 	editEntry(entryList, entryIndex){
 		this.props.dispatch(setEditing(entryList, entryIndex));
 
-
 	}
 
 	updateEntry(e, entryList, entryIndex){
@@ -61,44 +60,64 @@ export class JournalList extends React.Component {
 
 	render() {
 
-		// console.log('journalList props', this.props.dayEntries[this.props.type])
-		let input;
-
-		//hardcoded for 'grateful'
 		const entries = this.props.dayEntries[this.props.type].map((entry, index) => {
-			console.log('entry', entry);
 			return (
-	            <li className="journal-list-item" key={index}>
+	            // <li className="journal-list-item" key={index}>
 	            	<Field
-	            		component={Input}
+	            		component='input'
 	                    type="text"
 	                    name={`${this.props.type}-${index}`}
 	                    id={`${this.props.type}-${index}`}
-	                    onEdit={e => {
-	                        e.preventDefault();
-	                        console.log('input', input);
-	                        this.editEntry(this.props.type, {index});
-	                    }}
-	                    onUpdate={e => {
-	                        e.preventDefault();
-	                        this.updateEntry(this.props.type, {index});
-	                    }}
+	                    key={index}
+	                    // onEdit={e => {
+	                    //     e.preventDefault();
+	                    //     console.log('input', input);
+	                    //     this.editEntry(this.props.type, {index});
+	                    // }}
+	                    // onUpdate={e => {
+	                    //     e.preventDefault();
+	                    //     e.stopPropagation();
+	                    //     this.updateEntry(this.props.type, {index});
+	                    // }}
+	                    // onChange={e => {
+	                    //     e.preventDefault();
+	                    //     console.log("changing!")
+	                    // }}
 	                />
-	            </li>
+	            // </li>
             )}
         );
 
 		return (
 
-			<div className="journal">
+			// <div className="journal">
 				<form onSubmit={
                         this.props.handleSubmit(values =>
                         this.onSubmit(values)
                     )}>
-					{entries}
+					<Field
+	            		component='input'
+	                    type="text"
+	                    name='test'
+	                    id='test'
+	                    // onEdit={e => {
+	                    //     e.preventDefault();
+	                    //     console.log('input', input);
+	                    //     this.editEntry(this.props.type, {index});
+	                    // }}
+	                    // onUpdate={e => {
+	                    //     e.preventDefault();
+	                    //     e.stopPropagation();
+	                    //     this.updateEntry(this.props.type, {index});
+	                    // }}
+	                    // onChange={e => {
+	                    //     e.preventDefault();
+	                    //     console.log("changing!")
+	                    // }}
+	                />
 					<button type='submit' className="save-button">Save</button>
 				</form>				
-			</div>
+			// </div>
 
 		)
 	}
@@ -108,6 +127,6 @@ export class JournalList extends React.Component {
 const mapStateToProps = (state) => ({
     dayEntries: state.journal.dayEntries
 });
-
-export default reduxForm()(connect(mapStateToProps)(JournalList));
+const myComponent = reduxForm({form: 'test'})(JournalList);
+export default connect(mapStateToProps)(myComponent);
 
