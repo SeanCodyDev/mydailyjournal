@@ -22,22 +22,9 @@ import LandingPage from './landing';
 
 class App extends Component {
 
-  componentDidMount(){
-    // console.log(this.props);
-  }
 
-    componentWillMount(){
-      //for development... save time repeatedly logging in
+  componentWillMount(){
       return this.props.dispatch(login("123", "meghancody"));
-  //     console.log('app mounted');
-  //   if (!this.props.loggedIn){
-  //     return 
-  //   }
-
-  //   let date = moment().format("MMM D YYYY");
-  //   console.log('fetching for App with date:', date);
-  //   //hardcoded for now
-  //   this.props.dispatch(getEntries("Dec 20 2018"));
   }
 
   render() {
@@ -51,7 +38,5 @@ class App extends Component {
     );
   }
 }
-
-
 
 export default withRouter(connect()(App));

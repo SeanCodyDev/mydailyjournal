@@ -10,16 +10,12 @@ import {listUpdate} from '../actions';
 //import styles
 import './journalbox.css';
 
+//can this be made a functional component as a best practice?
 export class JournalBox extends React.Component {
 
-	// onSubmit(values){
-	// 	console.log('onSubmit from JournalBox');
-	// 	console.log('props:', this.props);
-	// 	console.log('values:', values);
-	// 	this.props.dispatch(listUpdate(this.props, values));
-	// }
-
 	render() {
+
+		//determine prompt for the JournalList
 		let prompt = "";
 		let entries = this.props.lists[this.props.type];
 
@@ -35,7 +31,7 @@ export class JournalBox extends React.Component {
 
 			<div className="box-wrapper">
 				<h3 className="box-prompt">{prompt}</h3>
-				<JournalList type={this.props.type} onSubmit={values => this.onSubmit(values)} entries={entries} />
+				<JournalList type={this.props.type} form={this.props.type} />
 			</div>
 
 		)
@@ -48,3 +44,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(JournalBox);
+
+//this was modified because entries can be retrieved from the store
+// <JournalList type={this.props.type} entries={entries} />

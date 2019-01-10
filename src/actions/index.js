@@ -2,7 +2,11 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
 
-
+//is this being called anywhere?
+//this may be redundant with UPDATE_ENTRY
+//because of how forms are being used here, it is preferable to
+//update an entire list at a time, not just a single entry
+//the state may need to be updated with an 'editing' property for each list
 export const LIST_UPDATE = 'LIST_UPDATE';
 export const listUpdate = (boxTitle, entries) => ({    
     type: LIST_UPDATE,

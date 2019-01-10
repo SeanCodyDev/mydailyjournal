@@ -7,6 +7,9 @@ import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../local-storage';
 
+//testing for initializing state
+import {getEntries} from './index';
+
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
     type: SET_AUTH_TOKEN,
@@ -40,13 +43,6 @@ export const login = (username, password) => dispatch => {
     // auth field
     const token = base64EncodingUTF8(`${username}:${password}`);
     return (
-        // fetch(`${API_BASE_URL}/api/auth/login`, {
-        //     method: 'POST',
-        //     headers: {
-        //         // Provide our username and password as login credentials
-        //         Authorization: `Basic ${token}`
-        //     }
-        // })
         fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {

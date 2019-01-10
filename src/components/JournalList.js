@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
 import {listUpdate, setEditing, updateEntry} from '../actions';
 import {connect} from 'react-redux';
+import moment from 'moment';
+
+//import actions
+import {getEntries} from '../actions';
 
 //import components
 import Input from './input';
@@ -13,12 +17,24 @@ import './journallist.css';
 
 export class JournalList extends React.Component {
 
-	componentDidUpdate(){
-		this.handleInitialize();
+	componentWillMount(){
+		console.log('hello from componentWillMount');
+		//today - formatted
+		let date = moment().format("MMM D YYYY");
+		//hardcoded for testing
+		date = "Dec 20 2018";
+
+		//if entries already exist for today, load them into the state
+		//this may not be best syntax practice for using Promises, but it seems to be working.
+		this.props.dispatch(getEntries(date)).then(res => {
+			this.handleInitialize()
+		})
+		.catch(err => console.error(err));
 
 	}
 
 	handleInitialize(){
+		console.log('hello from handleInitialize');
 
 		let initDataActual = {};
 
@@ -31,90 +47,48 @@ export class JournalList extends React.Component {
 		this.props.initialize(initDataActual);
 	}
 
+	//stubbed... not yet functional
+	//will be used as conditional for what is returned with the entries.map
 	editEntry(entryList, entryIndex){
 		this.props.dispatch(setEditing(entryList, entryIndex));
-
 	}
 
+	//stubbed... not yet functional
+	//will be used if(editing)... will POST an update to the modified entry
 	updateEntry(e, entryList, entryIndex){
 		console.log('e.target', e.target)
 		this.props.dispatch(updateEntry(entryList, entryIndex));
 	}
 
 	onSubmit(input){
-
 		console.log('values', input);
-		// console.log('input.length', Object.keys(input).length);
-		// let entries = {};
-
-		// //filter 'input' object to create a key (name) and value (value)
-		// //object 'entries'
-		// for (let i=0; i<Object.keys(input).length; i++){
-		// 	// console.log('for loop:', input[Object.keys(input)[i]].name);
-		// 	entries[input[Object.keys(input)[i]].name] = input[Object.keys(input)[i]].value;
-		// }
-
-		// console.log('entries', entries);
-		// this.props.dispatch(listUpdate(this.props, entries));
+		//dispatch createEntry
 	}
 
 	render() {
+		console.log('hello from JournalList render')
 
+		//render, name, id, key for appropriate number of fields
+		//if no entries exist for the day, default state is 3 for grateful/greatness, 1 for affirmation
 		const entries = this.props.dayEntries[this.props.type].map((entry, index) => {
 			return (
-	            // <li className="journal-list-item" key={index}>
-	            	<Field
-	            		component='input'
-	                    type="text"
-	                    name={`${this.props.type}-${index}`}
-	                    id={`${this.props.type}-${index}`}
-	                    key={index}
-	                    // onEdit={e => {
-	                    //     e.preventDefault();
-	                    //     console.log('input', input);
-	                    //     this.editEntry(this.props.type, {index});
-	                    // }}
-	                    // onUpdate={e => {
-	                    //     e.preventDefault();
-	                    //     e.stopPropagation();
-	                    //     this.updateEntry(this.props.type, {index});
-	                    // }}
-	                    // onChange={e => {
-	                    //     e.preventDefault();
-	                    //     console.log("changing!")
-	                    // }}
-	                />
-	            // </li>
+            	<Field
+            		component='input'
+                    type="text"
+                    name={`${this.props.type}-${index}`}
+                    id={`${this.props.type}-${index}`}
+                    key={index}
+                />
             )}
         );
 
 		return (
-
 			// <div className="journal">
 				<form onSubmit={
                         this.props.handleSubmit(values =>
                         this.onSubmit(values)
                     )}>
-					<Field
-	            		component='input'
-	                    type="text"
-	                    name='test'
-	                    id='test'
-	                    // onEdit={e => {
-	                    //     e.preventDefault();
-	                    //     console.log('input', input);
-	                    //     this.editEntry(this.props.type, {index});
-	                    // }}
-	                    // onUpdate={e => {
-	                    //     e.preventDefault();
-	                    //     e.stopPropagation();
-	                    //     this.updateEntry(this.props.type, {index});
-	                    // }}
-	                    // onChange={e => {
-	                    //     e.preventDefault();
-	                    //     console.log("changing!")
-	                    // }}
-	                />
+					{entries}
 					<button type='submit' className="save-button">Save</button>
 				</form>				
 			// </div>
@@ -127,6 +101,6 @@ export class JournalList extends React.Component {
 const mapStateToProps = (state) => ({
     dayEntries: state.journal.dayEntries
 });
-const myComponent = reduxForm({form: 'test'})(JournalList);
+const myComponent = reduxForm()(JournalList);
 export default connect(mapStateToProps)(myComponent);
 

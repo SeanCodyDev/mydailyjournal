@@ -16,8 +16,7 @@ export class LoginForm extends React.Component {
         console.log('hello from LoginForm')
         const {username, password } = values;
         const user = {username, password };
-        return this.props
-            .dispatch(login(username, password));
+        return this.props.dispatch(login(username, password));
     }
 
 	render () {
